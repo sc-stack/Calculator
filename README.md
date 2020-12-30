@@ -1,0 +1,1 @@
+A project that underscores the complexity of my understanding of JS fundamentals and HTML5/ CSS3. 

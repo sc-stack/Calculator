@@ -2,14 +2,12 @@
     display: grid;
     grid-template-columns: repeat(4 ,1fr);
     grid-template-rows: repeat(5,1fr);
+    margin: auto;
+    width: 50vw;
+    height: 50vh;
     position: absolute;
-    margin: 0;
-    top: 50%;
-    right: 50%;
-    width: 50%;
-    height: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+    left: 25%;
+    top: 25%;
 }
 .zero{
     grid-area: 5/1/6/2;  

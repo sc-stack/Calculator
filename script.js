@@ -41,22 +41,31 @@ function populateDisplay(){
             //appends number to display if a operator is not selected
             if(operators.indexOf(button.textContent) < 0 && stage == 0){ 
                 display.textContent += button.textContent;
+                //stores operator in variable when button has it and changes the first number to a float
             }else if(operators.indexOf(button.textContent) > -1 && stage == 0){
                 operator = button.textContent;
                 num1 = parseFloat(display.textContent);
                 stage += .5;
+                //resets the display and moves on to the 2nd number
             }else if(operators.indexOf(button.textContent) < 0 && stage == .5 && !("=" == button.textContent)){
                 display.textContent = "";
                 display.textContent += button.textContent;
                 stage+= .5;
+                //appends the content to the display for the second number
             }else if(operators.indexOf(button.textContent) < 0 && stage == 1 && !("=" == button.textContent)){
                 display.textContent += button.textContent;
-            }else if("=" == button.textContent && stage == 1){
+            //helps chain it if you are doing multiple operations with the calculator
+            }else if(("=" == button.textContent || operators.indexOf(button.textContent) > -1)&& stage == 1){
                 num2 = parseFloat(display.textContent);
-                //updated to show anwser on display
-                update(operate(operator, num1, num2));
+                const ans = operate(operator, num1, num2);
+                update(ans);
+               if(operators.indexOf(button.textContent) > -1){
                 operator = button.textContent;
+               } 
+                num1 = ans;
+                stage = .5;
             }
+            //clear button resets the calculator
             if(button.textContent == "clear"){
                 reset();
                 stage = 0;

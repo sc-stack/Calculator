@@ -63,4 +63,9 @@
 .display{
     grid-area: 1/1/2/4;
     border: 1px solid black;
+    font-size: 2em;
+}
+.hover{
+    opacity: 1;
+    background: white;
 }

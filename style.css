@@ -8,6 +8,7 @@
     position: absolute;
     left: 25%;
     top: 25%;
+    text-align: right;
 }
 .zero{
     grid-area: 5/1/6/2;  
@@ -65,7 +66,7 @@
     border: 1px solid black;
     font-size: 2em;
 }
-.hover{
+.pressed{
     opacity: 1;
     background: white;
 }

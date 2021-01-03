@@ -11,7 +11,7 @@ function multiply(num1, num2){
 }
 function divide(num1, num2){
     if(num2 == 0){
-        return "You can't divide by 0";
+        return "ERROR";
     }
     return num1 / num2;
 }
@@ -34,16 +34,18 @@ const display = document.querySelector(".display");
 function populateDisplay(){
     const buttons = document.querySelectorAll("button");
     const operators = "+-/xclear";
+    const pressed = document.querySelector(".pressed");
     let stage = 0;
     //iterate through button node list to add its content to the display
     buttons.forEach((button) => {
         button.addEventListener('click', () => {
             //appends number to display if a operator is not selected
-            if(operators.indexOf(button.textContent) < 0 && stage == 0){ 
+            if(operators.indexOf(button.textContent) < 0 && stage == 0 && !("=" == button.textContent)){ 
                 display.textContent += button.textContent;
                 //stores operator in variable when button has it and changes the first number to a float
             }else if(operators.indexOf(button.textContent) > -1 && stage == 0){
                 operator = button.textContent;
+                curButton = button;
                 num1 = parseFloat(display.textContent);
                 stage += .5;
                 //resets the display and moves on to the 2nd number
@@ -55,14 +57,21 @@ function populateDisplay(){
             }else if(operators.indexOf(button.textContent) < 0 && stage == 1 && !("=" == button.textContent)){
                 display.textContent += button.textContent;
             //helps chain it if you are doing multiple operations with the calculator
-            }else if(("=" == button.textContent || operators.indexOf(button.textContent) > -1)&& stage == 1){
+            }else if(operators.indexOf(button.textContent) > -1 && stage == 1){
                 num2 = parseFloat(display.textContent);
                 const ans = operate(operator, num1, num2);
                 update(ans);
-               if(operators.indexOf(button.textContent) > -1){
-                operator = button.textContent;
-               } 
                 num1 = ans;
+                operator = button.textContent;
+                stage=.5;
+            }else if("=" == button.textContent && stage == 1){
+                num2 = parseFloat(display.textContent);
+                const ans = operate(operator, num1, num2);
+                update(ans);
+                num1 = ans;
+                stage++;
+            }else if(operators.indexOf(button.textContent) > -1 && stage == 2){
+                operator = button.textContent;
                 stage = .5;
             }
             //clear button resets the calculator
@@ -82,4 +91,5 @@ function reset(){
     display.textContent = "";
     operator, num1, num2 = undefined;
 }
+
 populateDisplay();

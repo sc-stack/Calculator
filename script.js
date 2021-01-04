@@ -34,7 +34,6 @@ const display = document.querySelector(".display");
 function populateDisplay(){
     const buttons = document.querySelectorAll("button");
     const operators = "+-/xclear";
-    const pressed = document.querySelector(".pressed");
     let stage = 0;
     //iterate through button node list to add its content to the display
     buttons.forEach((button) => {
@@ -45,7 +44,6 @@ function populateDisplay(){
                 //stores operator in variable when button has it and changes the first number to a float
             }else if(operators.indexOf(button.textContent) > -1 && stage == 0){
                 operator = button.textContent;
-                curButton = button;
                 num1 = parseFloat(display.textContent);
                 stage += .5;
                 //resets the display and moves on to the 2nd number

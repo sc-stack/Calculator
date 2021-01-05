@@ -34,9 +34,12 @@ const display = document.querySelector(".display");
 function populateDisplay(){
     const buttons = document.querySelectorAll("button");
     const operators = "+-/xclear";
+    const perc = "%";
     let stage = 0;
+    const negative = "+/-";
     //iterate through button node list to add its content to the display
     buttons.forEach((button) => {
+        if(button.textContent != perc && button.textContent != negative){ 
         button.addEventListener('click', () => {
             //appends number to display if a operator is not selected
             if(operators.indexOf(button.textContent) < 0 && stage == 0 && !("=" == button.textContent)){ 
@@ -78,6 +81,7 @@ function populateDisplay(){
                 stage = 0;
             }
         });
+     }
     });
 }
 //updates the display after an operator is pressed on
@@ -89,5 +93,11 @@ function reset(){
     display.textContent = "";
     operator, num1, num2 = undefined;
 }
-
+function percentage(str){
+    let num = parseInt(str);
+    num/= 100;
+    display.textContent = num;
+}
+const perc = document.querySelector(".percentage");
+perc.addEventListener('click' , percentage(display.textContent));
 populateDisplay();

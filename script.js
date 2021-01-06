@@ -39,8 +39,11 @@ function populateDisplay(){
     const negative = "+/-";
     //iterate through button node list to add its content to the display
     buttons.forEach((button) => {
-        if(button.textContent != perc && button.textContent != negative){ 
         button.addEventListener('click', () => {
+            if(button.textContent == "%"){
+                console.log("perc");
+                percentage();
+            }else{
             //appends number to display if a operator is not selected
             if(operators.indexOf(button.textContent) < 0 && stage == 0 && !("=" == button.textContent)){ 
                 display.textContent += button.textContent;
@@ -80,8 +83,8 @@ function populateDisplay(){
                 reset();
                 stage = 0;
             }
+        }
         });
-     }
     });
 }
 //updates the display after an operator is pressed on
@@ -93,11 +96,14 @@ function reset(){
     display.textContent = "";
     operator, num1, num2 = undefined;
 }
-function percentage(str){
-    let num = parseInt(str);
-    num/= 100;
-    display.textContent = num;
+//function to change it number to a percentage
+function percentage(stage){
+    if(display.textContent != "" && typeof parseFloat(display.textContent) === "number"){ 
+    let temp = parseFloat(display.textContent);
+    update(temp/=100);
+    }
 }
-const perc = document.querySelector(".percentage");
-perc.addEventListener('click' , percentage(display.textContent));
+
+//const perc = document.querySelector(".percentage");
+//perc.addEventListener('click' , percentage(display.textContent));
 populateDisplay();

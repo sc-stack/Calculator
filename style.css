@@ -112,3 +112,10 @@
     background-image: -webkit-linear-gradient(bottom,  rgb(240, 156, 0) 0%, rgb(254,176,24) 100%);
     background-image: -ms-linear-gradient(bottom,  rgb(240, 156, 0) 0%, rgb(254,176,24) 100%);
 }
+.percentage:active{
+    background-image: linear-gradient(bottom, rgb(240, 156, 0) 0%, rgb(254,176,24) 100%);
+    background-image: -o-linear-gradient(bottom,  rgb(240, 156, 0) 0%, rgb(254,176,24) 100%);
+    background-image: -moz-linear-gradient(bottom,  rgb(240, 156, 0) 0%, rgb(254,176,24) 100%);
+    background-image: -webkit-linear-gradient(bottom,  rgb(240, 156, 0) 0%, rgb(254,176,24) 100%);
+    background-image: -ms-linear-gradient(bottom,  rgb(240, 156, 0) 0%, rgb(254,176,24) 100%);
+}

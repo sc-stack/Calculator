@@ -8,7 +8,8 @@
     position: absolute;
     left: 35%;
     top: 15%;
-    background:rgb(254,176,24);
+    background:white;
+    grid-gap: 1px;
 }
 .zero{
     grid-area: 6/1/7/3;  
@@ -65,27 +66,41 @@
     grid-area: 2/3/3/4;
 }
 .display{
+    border-radius: 5px; 
     grid-area: 1/1/2/5;
     border: 1px solid blue;
     font-family: "Allerta Stencil";
-    font-size: 5vw;
+    font-size: 9vh;
     background: rgb(254,176,24);
     color: white;
     position: relative;
     top: 50%;
     text-align: right;
     transform: translateY(-50%);
+    animation-name: hi;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    animation-fill-mode: forwards;
+}
+@keyframes hi{
+    0%{
+        background: orange;
+    }
+    75%{
+        background:  lightblue;
+    }
+    100%{
+        background:  rgb(254,176,24);
+    }
 }
 #button{
+    border-radius: 5px;
     color: white;
     background-image: linear-gradient(bottom, orange 0%, lightblue 100%);
     background-image: -o-linear-gradient(bottom, orange 0%, lightblue 100%);
     background-image: -moz-linear-gradient(bottom, orange 0%,lightblue 100%);
     background-image: -webkit-linear-gradient(bottom, orange 0%,lightblue 100%);
     background-image: -ms-linear-gradient(bottom, orange 0%, lightblue 100%);
-    -webkit-box-shadow: 0px 2px 0px  #be6a0a, 0px 1px 6px lightblue, inset 0px 1px 0px rgba(255,255,255,.3), inset 0px 0px 3px rgba(255,255,255,.5);
-    -moz-box-shadow: 0px 2px 0px #be6a0a, 0px 1px 6px lightblue, inset 0px 1px 0px rgba(255,255,255,.3), inset 0px 0px 3px rgba(255,255,255,.5);
-    box-shadow: 0px 2px 0px  #be6a0a, 0px 1px 6px lightblue, inset 0px 1px 0px rgba(255,255,255,.3), inset 0px 0px 3px rgba(255,255,255,.5);
 }
 #button:active{
     background-image: linear-gradient(bottom, rgb(240, 156, 0) 0%, rgb(254,176,24) 100%);

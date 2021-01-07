@@ -36,13 +36,13 @@ function populateDisplay(){
     const operators = "+-/xclear";
     const perc = "%";
     let stage = 0;
-    const negative = "+/-";
     //iterate through button node list to add its content to the display
     buttons.forEach((button) => {
         button.addEventListener('click', () => {
             if(button.textContent == "%"){
-                console.log("perc");
                 percentage();
+            }else if(button.textContent == "+/-"){
+                changeSign();
             }else{
             //appends number to display if a operator is not selected
             if(operators.indexOf(button.textContent) < 0 && stage == 0 && !("=" == button.textContent)){ 
@@ -71,7 +71,7 @@ function populateDisplay(){
             }else if("=" == button.textContent && stage == 1){
                 num2 = parseFloat(display.textContent);
                 const ans = operate(operator, num1, num2);
-                update(ans);
+                update(parseFloat(ans.toFixed(7)));
                 num1 = ans;
                 stage++;
             }else if(operators.indexOf(button.textContent) > -1 && stage == 2){
@@ -79,7 +79,7 @@ function populateDisplay(){
                 stage = .5;
             }
             //clear button resets the calculator
-            if(button.textContent == "clear"){
+            if(button.textContent == "AC"){
                 reset();
                 stage = 0;
             }
@@ -103,7 +103,25 @@ function percentage(stage){
     update(temp/=100);
     }
 }
-
+//changes negative to positive and vice versa
+function changeSign(){
+    if(display.textContent != "" && typeof parseFloat(display.textContent) === "number"){ 
+        let temp = parseFloat(display.textContent);
+        update(temp * -1);
+    }
+}
+//checks if the number has 11 digits - the amt it takes to fill up the display
+function checkIfFull(){
+    let cnt = 0;
+    if(display.textContent != "" && typeof parseFloat(display.textContent) === "number"){ 
+        let temp = parseFloat(display.textContent);
+        while(temp > 0){
+            cnt++;
+            temp/= 10;
+        }
+    }
+    return (cnt >= 11)? true : false;
+}
 //const perc = document.querySelector(".percentage");
 //perc.addEventListener('click' , percentage(display.textContent));
 populateDisplay();
